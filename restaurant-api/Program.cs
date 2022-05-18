@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using restaurant_api.Models;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<DishContext>(opt => opt.UseInMemoryDatabase("DishList"));
+builder.Services.AddDbContext<DishContext>(opt => opt.UseSqlite(@"DataSource=data.db;"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
