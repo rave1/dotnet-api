@@ -4,8 +4,9 @@
     <carousel />
     <b-row class="px-4">
       <food-card
-        v-for="{ id, name, price, description, picture } in dishes"
-        :key="id"
+        v-for="dish in dishes"
+        :key="dish.id"
+        :dish="dish"
       />
     </b-row>
   </b-container>
@@ -25,6 +26,7 @@ export default {
     this.$axios
       .get('https://localhost:7108/api/Dishes/')
       .then((res) => (this.dishes = res.data))
+      console.log(this.dishes)
   },
 }
 </script>

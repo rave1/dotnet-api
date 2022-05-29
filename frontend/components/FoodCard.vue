@@ -1,29 +1,40 @@
 <template>
   <div class="mt-3">
     <b-card
-      title="Card Title"
-      img-src="https://picsum.photos/600/300/?image=25"
-      img-alt="Image"
+      :title="dish.name"
+      :img-src="dish.picture"
+      img-alt="PICGTURE"
       img-top
       tag="article"
       style="max-width: 20rem"
       class="mb-2"
     >
       <b-card-text>
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
+        {{dish.description}}
+      </b-card-text>
+      <b-card-text>
+        Cena: {{dish.price}}
       </b-card-text>
 
       <b-button href="#" variant="primary">Go somewhere</b-button>
+      <b-button @click="deleteDish" variant="danger">Usuń</b-button>
     </b-card>
   </div>
 </template>
 
 <script>
 export default {
+  props: ['dish'],
   mounted() {
-    console.log(this.name)
+    console.log(this.dish)
   },
+  methods: {
+    deleteDish(event) {
+      console.log(this.dish.id)
+      this.$axios.delete(`https://localhost:7108/api/Dishes/${this.dish.id}`)
+      window.location.reload(true) // TODO hot reload instead of a refresh
+    }
+  }
 }
 </script>
 
