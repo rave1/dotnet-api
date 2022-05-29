@@ -16,7 +16,7 @@
         Cena: {{dish.price}}
       </b-card-text>
 
-      <b-button href="#" variant="primary">Go somewhere</b-button>
+      <b-button variant="primary"><NuxtLink :to="`${dish.id}`">Otwórz</NuxtLink></b-button>
       <b-button @click="deleteDish" variant="danger">Usuń</b-button>
     </b-card>
   </div>

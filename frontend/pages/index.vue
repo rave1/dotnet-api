@@ -2,13 +2,15 @@
   <b-container fluid class="m-0 p-0">
     <nav-bar />
     <carousel />
-    <b-row class="px-4">
+    <b-container>
+    <b-row class="px-4" align-v="center" align-h="center">
+      <b-col cols="3" class="e" v-for="dish in dishes" :key="dish.id">
       <food-card
-        v-for="dish in dishes"
-        :key="dish.id"
         :dish="dish"
       />
+      </b-col>
     </b-row>
+    </b-container>
   </b-container>
 </template>
 
