@@ -14,6 +14,19 @@
           required
         ></b-form-input>
       </b-form-group>
+      <b-form-group
+        id="input-group-4"
+        label="name"
+        label-for="input-4"
+        description="Opis Potrawy"
+      >
+        <b-form-input
+          id="input-4"
+          v-model="form.description"
+          placeholder="Podaj Opis"
+          required
+        ></b-form-input>
+      </b-form-group>
 
       <b-form-group id="input-group-3" label="Price:" label-for="input-3">
         <b-form-input
@@ -48,17 +61,6 @@
     ></b-form-file>
     <div class="mt-3">Selected file: {{ file1 ? file1.name : '' }}</div> -->
 
-      <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
-        <b-form-checkbox-group
-          v-model="form.checked"
-          id="checkboxes-4"
-          :aria-describedby="ariaDescribedby"
-        >
-          <b-form-checkbox value="me">Check me out</b-form-checkbox>
-          <b-form-checkbox value="that">Check that out</b-form-checkbox>
-        </b-form-checkbox-group>
-      </b-form-group>
-
       <b-button type="submit" variant="primary">Submit</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
@@ -88,7 +90,8 @@
         await this.$axios.post('https://localhost:7108/api/Dishes', {
             'picture': this.form.picture,
             'name': this.form.name,
-            'price': this.form.price
+            'price': this.form.price,
+            'description': this.form.description
         })
         .then(response => {this.$bvToast.toast(`Danie ${response.data.name} stworzono`, {
           title: 'Sukces!',
